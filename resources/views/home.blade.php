@@ -1,19 +1,19 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="row justify-content-center">
-    <div class="col-md-8">
+<div class="row">
+    <div class="col-md-6 col-lg-3">
         <div class="card">
-            <div class="card-header">{{ __('Dashboard') }}</div>
-
             <div class="card-body">
-                @if (session('status'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('status') }}
+                <div class="media align-items-center">
+                    <div class="avatar avatar-icon avatar-lg avatar-blue">
+                        <i class="anticon anticon-dollar"></i>
+                    </div>
+                    <div class="m-l-15">
+                        <h2 class="m-b-0">$23,523</h2>
+                        <p class="m-b-0 text-muted">Profit</p>
+                    </div>
                 </div>
-                @endif
-
-                {{ __('You are logged in!') }}
             </div>
         </div>
     </div>
