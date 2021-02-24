@@ -74,9 +74,9 @@
         </div>
     </div>
 
-    @if(Session::get('success') || Session::get('error'))
+    <!-- @if(Session::get('success') || Session::get('error'))
     <div id="notification" class="notification-toast top-right w-100"></div>
-    @endif
+    @endif -->
 
 
     <script src="{{ url('assets/js/vendors.min.js') }}"></script>
@@ -87,7 +87,14 @@
     @if(Session::get('success') || Session::get('error'))
     <script>
         $(document).ready(function() {
-            showToast("{{ Session::get('success') ?? Session::get('error') }}", "{{ Auth()->user()->name }}");
+            @if(Session::get('success'))
+            var icon = 'success';
+            @endif
+            @if(Session::get('error'))
+            var icon = 'error';
+            @endif
+
+            sweatAlert(icon, "{{ Session::get('success') ?? Session::get('error') }}", "{{ Auth()->user()->name }}");
         });
     </script>
     @endif

@@ -1,14 +1,14 @@
 <div class="header">
     <div class="logo logo-dark">
         <a href="{{ url('/') }}">
-            <img src="assets/images/logo/logo.png" alt="Logo">
-            <img class="logo-fold" src="assets/images/logo/logo-fold.png" alt="Logo">
+            <img src="{{ url('assets/images/logo/logo.png') }}" alt="Logo">
+            <img class="logo-fold" src="{{ url('assets/images/logo/logo-fold.png') }}" alt="Logo">
         </a>
     </div>
     <div class="logo logo-white">
         <a href="{{ url('/') }}">
-            <img src="assets/images/logo/logo-white.png" alt="Logo">
-            <img class="logo-fold" src="assets/images/logo/logo-fold-white.png" alt="Logo">
+            <img src="{{ url('assets/images/logo/logo-white.png') }}" alt="Logo">
+            <img class="logo-fold" src="{{ url('assets/images/logo/logo-fold-white.png') }}" alt="Logo">
         </a>
     </div>
     <div class="nav-wrap">
@@ -75,7 +75,7 @@
             <li class="dropdown dropdown-animated scale-left">
                 <div class="pointer" data-toggle="dropdown">
                     <div class="avatar avatar-image  m-h-10 m-r-15">
-                        <img src="{{ (Auth()->user()->pic != null) ? 'profile/' . Auth()->user()->pic : 'https://ui-avatars.com/api/?background=random&name=' . Str::slug(Auth()->user()->name) }}" alt="{{ Auth()->user()->name }}">
+                        <img src="{{ (Auth()->user()->pic != null) ? url('profile/' . Auth()->user()->pic) : 'https://ui-avatars.com/api/?background=random&name=' . Str::slug(Auth()->user()->name) }}" alt="{{ Auth()->user()->name }}">
                     </div>
                 </div>
                 <div class="p-b-15 p-t-20 dropdown-menu pop-profile">

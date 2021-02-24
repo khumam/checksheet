@@ -10,4 +10,15 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function sendNotificiation($icon = null, $title = null, $text = null)
+    {
+        $send =  [
+            'icon' => $icon,
+            'title' => $title,
+            'text' => $text,
+        ];
+
+        return response()->json($send);
+    }
 }

@@ -18,3 +18,10 @@ function showToast(message, name) {
         $('#notification .toast:first-child').remove();
     }, 3000);
 }
+
+function sweatAlert(icon, message) {
+    Swal.fire({
+        title: message,
+        icon: icon,
+    });
+}
