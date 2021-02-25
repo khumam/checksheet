@@ -31,21 +31,4 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/savePassword', [SettingController::class, 'savePassword'])->name('save_password');
         Route::post('/savePhotoProfile', [SettingController::class, 'savePhotoProfile'])->name('save_photo_profile');
     });
-
-    Route::prefix('item')->group(function () {
-        Route::get('/', [ItemController::class, 'index'])->name('item_page');
-        Route::get('/list', [ItemController::class, 'list'])->name('item_list');
-        Route::post('store', [ItemController::class, 'store'])->name('item_store');
-        Route::post('update', [ItemController::class, 'update'])->name('item_update');
-        Route::delete('delete', [ItemController::class, 'delete'])->name('item_delete');
-        Route::get('{id}/detail', [ItemController::class, 'show'])->name('item_show');
-    });
-
-    Route::prefix('stock')->group(function () {
-        Route::get('/', [StockController::class, 'index'])->name('stock_page');
-        Route::get('/list', [StockController::class, 'list'])->name('stock_list');
-        Route::post('store', [StockController::class, 'store'])->name('stock_store');
-        Route::post('update', [StockController::class, 'update'])->name('stock_update');
-        Route::delete('delete', [StockController::class, 'delete'])->name('stock_delete');
-    });
 });

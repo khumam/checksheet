@@ -10,14 +10,6 @@
                 </a>
             </li>
             <li class="nav-item dropdown">
-                <a href="{{ url('item') }}">
-                    <span class="icon-holder">
-                        <i class="anticon anticon-hdd"></i>
-                    </span>
-                    <span class="title">Item</span>
-                </a>
-            </li>
-            <li class="nav-item dropdown">
                 <a href="{{ url('setting') }}">
                     <span class="icon-holder">
                         <i class="anticon anticon-setting"></i>
