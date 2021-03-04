@@ -47,4 +47,9 @@ class UserService
     {
         return User::latest()->get();
     }
+
+    public function getData($credential)
+    {
+        return User::where($credential)->first();
+    }
 }

@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\TokenController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpFoundation\ServerBag;
@@ -22,6 +24,13 @@ use Symfony\Component\HttpFoundation\ServerBag;
 Route::get('/', [HomeController::class, 'welcome']);
 
 Auth::routes();
+
+Route::prefix('resetpassword')->group(function () {
+    Route::get('/confirm', [ResetPasswordController::class, 'confirm'])->name('reset_password_confirm');
+    Route::post('/send', [ResetPasswordController::class, 'send'])->name('reset_password_send');
+    Route::post('/reset', [ResetPasswordController::class, 'changePassword'])->name('reset_password');
+    Route::get('/{token}', [ResetPasswordController::class, 'index'])->where('token', '(.*)')->name('reset_password_page');
+});
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');

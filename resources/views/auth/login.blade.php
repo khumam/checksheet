@@ -25,9 +25,7 @@
                     </div>
                     <div class="form-group">
                         <label class="font-weight-semibold" for="password">Password</label>
-                        @if (Route::has('password.request'))
-                        <a class="float-right font-size-13 text-muted" href="{{ route('password.request') }}">Forget Password?</a>
-                        @endif
+                        <a class="float-right font-size-13 text-muted" href="{{ route('reset_password_confirm') }}">Forget Password?</a>
                         <div class="input-affix m-b-10">
                             <i class="prefix-icon anticon anticon-lock"></i>
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
