@@ -7,12 +7,6 @@
         <li class="nav-item">
             <a class="nav-link active" data-toggle="tab" href="#tab-account">Account</a>
         </li>
-        <!-- <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#tab-network">Network</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#tab-notification">Notification</a>
-        </li> -->
     </ul>
 </div>
 <div class="container">
@@ -39,13 +33,14 @@
                             </div>
                             <div>
                                 <button class="btn btn-tone btn-primary">Upload</button>
+                                @error('photo')
+                                <div class="text-danger">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
                         </div>
-                        @error('photo')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
+
                     </form>
                 </div>
             </div>
@@ -53,8 +48,8 @@
     </div>
 </div>
 <div class="container">
-    <div class="tab-content m-t-15">
-        <div class="tab-pane fade show active" id="tab-account">
+    <div class="tab-content m-t-15 row">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Informasi Umum</h4>
@@ -62,38 +57,28 @@
                 <div class="card-body">
                     <form action="{{ route('save_user') }}" method="POST">
                         @csrf
-                        <div class="form-row align-items-end">
-                            <div class="form-group col-md-5">
-                                <label class="font-weight-semibold" for="name">Nama lengkap</label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" placeholder="User Name" value="{{ Auth()->user()->name }}">
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                            <div class="form-group col-md-5">
-                                <label class="font-weight-semibold" for="email">Email</label>
-                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" placeholder="email" value="{{ Auth()->user()->email }}">
-                                @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                            <div class="form-group col-md-2">
-                                <button class="btn btn-block btn-primary">Simpan</button>
-                            </div>
+                        <div class="form-group">
+                            <label class="font-weight-semibold" for="name">Nama lengkap</label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" placeholder="User Name" value="{{ Auth()->user()->name }}">
+                            @error('name')
+                            <div class="invalid-feedback" role="alert"> {{ $message }} </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-semibold" for="email">Email</label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" placeholder="email" value="{{ Auth()->user()->email }}">
+                            @error('email')
+                            <div class="invalid-feedback" role="alert"> {{ $message }} </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-block btn-primary">Simpan</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<div class="container">
-    <div class="tab-content m-t-15">
-        <div class="tab-pane fade show active" id="tab-account">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Sunting Password</h4>
@@ -101,22 +86,29 @@
                 <div class="card-body">
                     <form action="{{ route('save_password') }}" method="POST">
                         @csrf
-                        <div class="form-row align-items-end">
-                            <div class="form-group col-md-4">
-                                <label class="font-weight-semibold" for="old_password">Password lama</label>
-                                <input type="password" class="form-control @error('old_password') is-invalid @enderror" name="old_password" id="old_password" placeholder="Password lama">
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label class="font-weight-semibold" for="new_password">Password baru</label>
-                                <input type="password" class="form-control @error('new_password') is-invalid @enderror" name="new_password" id="new_password" placeholder="Password baru">
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label class="font-weight-semibold" for="confirm_password">Konfirmasi password</label>
-                                <input type="password" class="form-control @error('confirm_password') is-invalid @enderror" name="confirm_password" id="confirm_password" placeholder="Konfirmasi password">
-                            </div>
-                            <div class="form-group col-md-2 ml-auto">
-                                <button class="btn btn-block btn-primary">Simpan</button>
-                            </div>
+                        <div class="form-group">
+                            <label class="font-weight-semibold" for="old_password">Password lama</label>
+                            <input type="password" class="form-control @error('old_password') is-invalid @enderror" name="old_password" id="old_password" placeholder="Password lama">
+                            @error('old_password')
+                            <div class="invalid-feedback" role="alert"> {{ $message }} </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-semibold" for="password">Password baru</label>
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" placeholder="Password baru">
+                            @error('password')
+                            <div class="invalid-feedback" role="alert"> {{ $message }} </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-semibold" for="password_confirmation">Konfirmasi password</label>
+                            <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" id="password_confirmation" placeholder="Konfirmasi password">
+                            @error('password_confirmation')
+                            <div class="invalid-feedback" role="alert"> {{ $message }} </div>
+                            @enderror
+                        </div>
+                        <div class="form-group ml-auto">
+                            <button class="btn btn-block btn-primary">Simpan</button>
                         </div>
                     </form>
                 </div>
