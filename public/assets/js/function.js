@@ -25,3 +25,22 @@ function sweatAlert(icon, message) {
         icon: icon,
     });
 }
+
+$(document).on('click', '.deleteButton', function(e) {
+    e.preventDefault();
+    var form = $(this).parents('form');
+    Swal.fire({
+        title: "Apakah Anda yakin?",
+        text: "Data tidak dapat dikembalikan!",
+        type: "warning",
+        showCancelButton: true,
+        dangerMode: true,
+        cancelButtonClass: '#DD6B55',
+        confirmButtonColor: '#dc3545',
+        confirmButtonText: 'Hapus!',
+    }).then(Confirm => {
+        if (Confirm.value) {
+            form.submit();
+        }
+    })
+})

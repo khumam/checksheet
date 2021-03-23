@@ -91,55 +91,6 @@
                 }
             ]
         });
-
-        $(document).on('click', '.deleteButton', function() {
-            Swal.fire({
-                title: 'Apakah kamu yakin?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#E7472C'
-            }).then((result) => {
-                if (result.value) {
-                    $.ajax({
-                        url: "{{ route('admin_user_delete') }}",
-                        method: 'DELETE',
-                        data: {
-                            id: $(this).data('id'),
-                        },
-                        headers: {
-                            'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                        },
-                        success: function(res) {
-                            Swal.fire({
-                                title: res.title,
-                                text: res.text,
-                                icon: res.icon,
-                            }).then((result) => {
-                                window.location.reload();
-                            });
-                        }
-                    });
-                }
-            });
-        });
-
-        $(document).on('click', '.detailButton', function() {
-            $.ajax({
-                url: "{{ route('admin_user_detail') }}",
-                method: 'POST',
-                data: {
-                    id: $(this).data('id'),
-                },
-                headers: {
-                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                },
-                success: function(res) {
-                    $('#detail_name').html(res.name);
-                    $('#detail_email').html(res.email);
-                    $('#userModal').modal('show');
-                }
-            });
-        })
     })
 </script>
 @endpush

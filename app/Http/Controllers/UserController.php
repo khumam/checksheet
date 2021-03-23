@@ -20,12 +20,14 @@ class UserController extends Controller
         return DataTables::of($data)
             ->addColumn('action', function ($data) {
                 return "<div class='btn-group'>
-                        <button class='btn btn-primary btn-sm detailButton' data-id='$data->id'>
+                        <a class='btn btn-primary btn-sm' href='" . route('user.show', $data->id) . "'>
                             <i class='anticon anticon-search'></i>
-                        </button>
-                        <button class='btn btn-danger btn-sm deleteButton' data-id='$data->id'>
-                            <i class='anticon anticon-delete'></i>
-                        </button>
+                        </a>
+                         <form action='" . route('user.destroy', $data->id) . "' method='POST'>" . csrf_field() . " " . method_field('DELETE') . "
+                            <button class='btn btn-danger btn-sm deleteButton' data-id='$data->id'>
+                                <i class='anticon anticon-delete'></i>
+                            </button>
+                        </form>
                     </div>";
             })
             ->rawColumns(['action'])
@@ -51,14 +53,21 @@ class UserController extends Controller
         return response()->json($act);
     }
 
-    public function delete(Request $request, userService $userService)
+    public function destroy(Request $request, userService $userService)
     {
         $act = $userService->delete($request);
 
         if ($act) {
-            return $this->sendNotificiation('success', 'Berhasil menghapus user');
+            return redirect()->back()->with('success', 'Berhasil menghapus user');
         } else {
-            return $this->sendNotificiation('success', 'Gagal menghapus user');
+            return redirect()->back()->with('error', 'Gagal menghapus user');
         }
+    }
+
+    public function show($id, UserService $userService)
+    {
+        $detail = $userService->get($id);
+
+        return view('user.show', compact('detail'));
     }
 }

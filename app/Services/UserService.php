@@ -52,4 +52,9 @@ class UserService
     {
         return User::where($credential)->first();
     }
+
+    public function get($id)
+    {
+        return User::where('id', $id)->first();
+    }
 }

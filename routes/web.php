@@ -48,7 +48,8 @@ Route::middleware(['auth'])->group(function () {
             Route::post('detail', [UserController::class, 'detail'])->name('admin_user_detail');
             Route::post('list', [UserController::class, 'list'])->name('admin_user_list');
             Route::post('update', [UserController::class, 'update'])->name('admin_user_update');
-            Route::delete('delete', [UserController::class, 'delete'])->name('admin_user_delete');
+            Route::delete('destroy/{id}', [UserController::class, 'destroy'])->name('user.destroy');
+            Route::get('{id}', [UserController::class, 'show'])->name('user.show');
         });
     });
 });
