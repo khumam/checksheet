@@ -43,13 +43,8 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::prefix('admin')->group(function () {
-        Route::prefix('user')->group(function () {
-            Route::get('/', [UserController::class, 'index'])->name('admin_user_page');
-            Route::post('detail', [UserController::class, 'detail'])->name('admin_user_detail');
-            Route::post('list', [UserController::class, 'list'])->name('admin_user_list');
-            Route::post('update', [UserController::class, 'update'])->name('admin_user_update');
-            Route::delete('destroy/{id}', [UserController::class, 'destroy'])->name('user.destroy');
-            Route::get('{id}', [UserController::class, 'show'])->name('user.show');
-        });
+        Route::resource('user', UserController::class)->only(['index', 'show', 'destroy']);
+        Route::post('list', [UserController::class, 'list'])->name('admin_user_list');
+
     });
 });

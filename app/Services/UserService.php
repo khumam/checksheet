@@ -38,9 +38,9 @@ class UserService
         }
     }
 
-    public function delete(Request $request)
+    public function delete($id)
     {
-        return User::where('id', $request->id)->delete();
+        return User::where('id', $id)->delete();
     }
 
     public function getAllData()

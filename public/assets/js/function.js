@@ -23,6 +23,8 @@ function sweatAlert(icon, message) {
     Swal.fire({
         title: message,
         icon: icon,
+    }).then((Confirm) => {
+        location.reload()
     });
 }
 

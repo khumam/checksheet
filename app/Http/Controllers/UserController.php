@@ -53,9 +53,9 @@ class UserController extends Controller
         return response()->json($act);
     }
 
-    public function destroy(Request $request, userService $userService)
+    public function destroy($id, userService $userService)
     {
-        $act = $userService->delete($request);
+        $act = $userService->delete($id);
 
         if ($act) {
             return redirect()->back()->with('success', 'Berhasil menghapus user');
