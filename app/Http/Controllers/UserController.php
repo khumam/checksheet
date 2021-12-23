@@ -23,10 +23,10 @@ class UserController extends Controller
                         <a class='btn btn-primary btn-sm' href='" . route('user.show', $data->id) . "'>
                             <i class='anticon anticon-search'></i>
                         </a>
-                         <form action='" . route('user.destroy', $data->id) . "' method='POST'>" . csrf_field() . " " . method_field('DELETE') . "
-                            <button class='btn btn-danger btn-sm deleteButton' data-id='$data->id'>
-                                <i class='anticon anticon-delete'></i>
-                            </button>
+                        <button class='btn btn-danger btn-sm deleteButton' data-id='$data->id' data-form='#userDeleteButton$data->id'>
+                            <i class='anticon anticon-delete'></i>
+                        </button>
+                        <form id='userDeleteButton$data->id' action='" . route('user.destroy', $data->id) . "' method='POST'>" . csrf_field() . " " . method_field('DELETE') . "
                         </form>
                     </div>";
             })

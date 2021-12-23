@@ -30,7 +30,7 @@ function sweatAlert(icon, message) {
 
 $(document).on('click', '.deleteButton', function(e) {
     e.preventDefault();
-    var form = $(this).parents('form');
+    var form = $(this).data('form');
     Swal.fire({
         title: "Apakah Anda yakin?",
         text: "Data tidak dapat dikembalikan!",
@@ -42,7 +42,7 @@ $(document).on('click', '.deleteButton', function(e) {
         confirmButtonText: 'Hapus!',
     }).then(Confirm => {
         if (Confirm.value) {
-            form.submit();
+            $(form).submit();
         }
     })
 })
