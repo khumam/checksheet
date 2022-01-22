@@ -23,7 +23,7 @@ class SettingService
     public function savePassword(Request $request)
     {
         return User::where('id', Auth()->user()->id)->update([
-            'password' => Hash::make($request->new_password)
+            'password' => Hash::make($request->password)
         ]);
     }
 
