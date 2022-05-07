@@ -17,7 +17,7 @@
                     <h4 class="card-title">Upload Foto Profil</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('save_photo_profile') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('setting.save.photo.profile') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="file" name="photo" id="photo" class="form-control" accept="image/*" hidden>
                         <div class="media align-items-center">
@@ -55,7 +55,7 @@
                     <h4 class="card-title">Informasi Umum</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('save_user') }}" method="POST">
+                    <form action="{{ route('setting.save.user') }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label class="font-weight-semibold" for="name">Nama lengkap</label>
@@ -84,7 +84,7 @@
                     <h4 class="card-title">Sunting Password</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('save_password') }}" method="POST">
+                    <form action="{{ route('setting.save.password') }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label class="font-weight-semibold" for="old_password">Password lama</label>

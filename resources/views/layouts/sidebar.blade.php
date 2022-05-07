@@ -2,7 +2,7 @@
     <div class="side-nav-inner">
         <ul class="side-nav-menu scrollable">
             <li class="nav-item dropdown">
-                <a href="{{ url('home') }}">
+                <a href="{{ route('home') }}">
                     <span class="icon-holder">
                         <i class="anticon anticon-dashboard"></i>
                     </span>
@@ -10,7 +10,7 @@
                 </a>
             </li>
             <li class="nav-item dropdown">
-                <a href="{{ url('admin/user') }}">
+                <a href="{{ route('user.index') }}">
                     <span class="icon-holder">
                         <i class="anticon anticon-team"></i>
                     </span>
@@ -18,7 +18,7 @@
                 </a>
             </li>
             <li class="nav-item dropdown">
-                <a href="{{ url('setting') }}">
+                <a href="{{ route('setting.index') }}">
                     <span class="icon-holder">
                         <i class="anticon anticon-setting"></i>
                     </span>

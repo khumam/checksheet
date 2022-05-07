@@ -25,26 +25,18 @@ Route::get('/', [HomeController::class, 'welcome']);
 
 Auth::routes();
 
-Route::prefix('resetpassword')->group(function () {
-    Route::get('/confirm', [ResetPasswordController::class, 'confirm'])->name('reset_password_confirm');
-    Route::post('/send', [ResetPasswordController::class, 'send'])->name('reset_password_send');
-    Route::post('/reset', [ResetPasswordController::class, 'changePassword'])->name('reset_password');
-    Route::get('/{token}', [ResetPasswordController::class, 'index'])->where('token', '(.*)')->name('reset_password_page');
-});
-
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     Route::prefix('setting')->group(function () {
-        Route::get('/', [SettingController::class, 'index'])->name('setting_page');
-        Route::post('/saveUser', [SettingController::class, 'saveUser'])->name('save_user');
-        Route::post('/savePassword', [SettingController::class, 'savePassword'])->name('save_password');
-        Route::post('/savePhotoProfile', [SettingController::class, 'savePhotoProfile'])->name('save_photo_profile');
+        Route::get('/', [SettingController::class, 'index'])->name('setting.index');
+        Route::post('/saveUser', [SettingController::class, 'saveUser'])->name('setting.save.user');
+        Route::post('/savePassword', [SettingController::class, 'savePassword'])->name('setting.save.password');
+        Route::post('/savePhotoProfile', [SettingController::class, 'savePhotoProfile'])->name('setting.save.photo.profile');
     });
 
     Route::prefix('admin')->group(function () {
         Route::resource('user', UserController::class)->only(['index', 'show', 'destroy']);
-        Route::post('list', [UserController::class, 'list'])->name('admin_user_list');
-
+        Route::post('list', [UserController::class, 'list'])->name('admin.admin.user.list');
     });
 });

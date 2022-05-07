@@ -10,6 +10,7 @@
     <link href="{{ url('assets/css/app.min.css') }}" rel="stylesheet">
 
     @stack('css')
+    @livewireStyles
 
 </head>
 
@@ -21,7 +22,7 @@
                     @yield('content')
                 </div>
                 <div class="d-none d-md-flex p-h-40 justify-content-between">
-                    <span class="">© 2019 Barra Dev</span>
+                    <span class="">Copyright © {{ date('y') }} Barra Dev</span>
                     <ul class="list-inline">
                         <li class="list-inline-item">
                             <a class="text-dark text-link" href="">Legal</a>
@@ -40,6 +41,7 @@
     <script src="{{ url('assets/js/app.min.js') }}"></script>
 
     @stack('js')
+    @livewireScripts
 
 </body>
 
