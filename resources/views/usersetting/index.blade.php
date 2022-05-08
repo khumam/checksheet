@@ -17,12 +17,12 @@
                     <h4 class="card-title">Upload Foto Profil</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('setting.save.photo.profile') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('user.setting.save.profile.picture') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="file" name="photo" id="photo" class="form-control" accept="image/*" hidden>
                         <div class="media align-items-center">
                             <div class="avatar avatar-image  m-h-10 m-r-15" style="height: 80px; width: 80px">
-                                <img src="{{ (Auth()->user()->pic != null) ? 'profile/' . Auth()->user()->pic : 'https://ui-avatars.com/api/?background=random&name=' . Str::slug(Auth()->user()->name) }}" alt="{{ Auth()->user()->name }}" id="openphoto">
+                                <img src="{{ (Auth()->user()->pic != null) ? \Storage::url(Auth()->user()->pic) : 'https://ui-avatars.com/api/?background=random&name=' . Str::slug(Auth()->user()->name) }}" alt="{{ Auth()->user()->name }}" id="openphoto">
                             </div>
                             <div class="m-l-20 m-r-20">
                                 <h5 class="m-b-5 font-size-18">Ubah Foto Profil</h5>
@@ -55,7 +55,7 @@
                     <h4 class="card-title">Informasi Umum</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('setting.save.user') }}" method="POST">
+                    <form action="{{ route('user.setting.save.user') }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label class="font-weight-semibold" for="name">Nama lengkap</label>
@@ -84,7 +84,7 @@
                     <h4 class="card-title">Sunting Password</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('setting.save.password') }}" method="POST">
+                    <form action="{{ route('user.setting.save.password') }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label class="font-weight-semibold" for="old_password">Password lama</label>

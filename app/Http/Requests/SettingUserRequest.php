@@ -31,7 +31,7 @@ class SettingUserRequest extends FormRequest
 
     /**
      * Get Message
-     * 
+     *
      * @return array
      */
     public function messages()

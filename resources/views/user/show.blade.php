@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="page-header no-gutters has-tab">
-    <h2 class="font-weight-normal">{{ $detail->name }}</h2>
+    <h2 class="font-weight-normal">{{ $data->name }}</h2>
     <ul class="nav nav-tabs">
         <li class="nav-item">
             <a class="nav-link active" data-toggle="tab" href="#tab-detail">Detail</a>
@@ -21,11 +21,11 @@
                         <tbody>
                             <tr>
                                 <td>Nama</td>
-                                <td class="text-dark font-weight-semibold">{{ $detail->name }}</td>
+                                <td class="text-dark font-weight-semibold">{{ $data->name }}</td>
                             </tr>
                             <tr>
                                 <td>Email</td>
-                                <td>{{ $detail->email }}</td>
+                                <td>{{ $data->email }}</td>
                             </tr>
                         </tbody>
                     </table>

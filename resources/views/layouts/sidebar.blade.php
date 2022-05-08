@@ -18,7 +18,7 @@
                 </a>
             </li>
             <li class="nav-item dropdown">
-                <a href="{{ route('setting.index') }}">
+                <a href="{{ route('user.setting.index') }}">
                     <span class="icon-holder">
                         <i class="anticon anticon-setting"></i>
                     </span>

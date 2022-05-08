@@ -75,7 +75,7 @@
             <li class="dropdown dropdown-animated scale-left">
                 <div class="pointer" data-toggle="dropdown">
                     <div class="avatar avatar-image  m-h-10 m-r-15">
-                        <img src="{{ (Auth()->user()->pic != null) ? url('profile/' . Auth()->user()->pic) : 'https://ui-avatars.com/api/?background=random&name=' . Str::slug(Auth()->user()->name) }}" alt="{{ Auth()->user()->name }}">
+                        <img src="{{ (Auth()->user()->pic != null) ? \Storage::url(Auth()->user()->pic) : 'https://ui-avatars.com/api/?background=random&name=' . Str::slug(Auth()->user()->name) }}" alt="{{ Auth()->user()->name }}">
                     </div>
                 </div>
                 <div class="p-b-15 p-t-20 dropdown-menu pop-profile">

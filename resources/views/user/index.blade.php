@@ -70,7 +70,7 @@
                 headers: {
                     'X-CSRF-TOKEN': "{{ csrf_token() }}"
                 },
-                url: "{{ route('admin.admin.user.list') }}",
+                url: "{{ route('admin.user.list') }}",
                 method: 'POST'
             },
             columns: [{
