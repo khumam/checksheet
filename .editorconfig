@@ -1,4 +1,5 @@
 root = true
+experimentalDecorators = true
 
 [*]
 charset = utf-8

@@ -19,12 +19,14 @@ class UserSettingRepository extends Repository implements UserSettingInterface
     {
         $this->model = new User();
         $this->fillable = $this->model->getFillable();
-        $this->excludeUpdate = ['password', 'remember_token'];
     }
 
     public function saveUser(SettingUserRequest $request)
     {
-        return $this->update($request, ['id' => Auth()->id()]);
+        return $this->model::where('id', Auth()->id())->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
     }
 
     public function savePassword(UpdatePasswordRequest $request)

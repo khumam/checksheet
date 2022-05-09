@@ -36,8 +36,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/saveProfilePicture', [UserSettingController::class, 'saveProfilePicture'])->name('user.setting.save.profile.picture');
     });
 
-    Route::prefix('admin')->group(function () {
-        Route::resource('user', UserController::class)->only(['index', 'show', 'destroy']);
-        Route::post('list', [UserController::class, 'list'])->name('admin.user.list');
+    Route::prefix('admin')->as('admin.')->group(function () {
+        Route::resource('user', UserController::class)->only(['index', 'show', 'destroy', 'edit']);
+        Route::post('user/list', [UserController::class, 'list'])->name('user.list');
     });
 });

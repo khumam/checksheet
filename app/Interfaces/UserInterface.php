@@ -12,4 +12,7 @@ interface UserInterface
     public function update($request, array $condition);
     public function destroy(array $condition);
     public function beAdmin(Request $request);
+    public function datatable();
+    public function buildDatatableTable();
+    public function buildDatatableScript();
 }

@@ -21,14 +21,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">
-                <table class="table" id="datatable">
-                    <thead>
-                        <th>No</th>
-                        <th>Nama</th>
-                        <th>Email</th>
-                        <th style="width: 10px; text-align: center"><i class='anticon anticon-setting'></i></th>
-                    </thead>
-                </table>
+                {!! $datatable !!}
             </div>
         </div>
     </div>
@@ -56,41 +49,5 @@
 @push('js')
 <script src="{{ url('assets/vendors/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ url('assets/vendors/datatables/dataTables.bootstrap.min.js') }}"></script>
-
-<script>
-    $(document).ready(function() {
-        var table = $('#datatable').DataTable({
-            paginate: true,
-            info: true,
-            sort: true,
-            processing: true,
-            serverSide: true,
-            order: [1, 'ASC'],
-            ajax: {
-                headers: {
-                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                },
-                url: "{{ route('admin.user.list') }}",
-                method: 'POST'
-            },
-            columns: [{
-                    data: 'DT_RowIndex',
-                    orderable: false,
-                    searchable: false,
-                    class: 'text-center',
-                    width: '10px'
-                },
-                {
-                    data: 'name',
-                },
-                {
-                    data: 'email',
-                },
-                {
-                    data: 'action'
-                }
-            ]
-        });
-    })
-</script>
+{!! $datatableScript !!}
 @endpush

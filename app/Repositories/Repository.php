@@ -2,8 +2,12 @@
 
 namespace App\Repositories;
 
+use App\Traits\DatatableBuilder;
+
 abstract class Repository
 {
+    use DatatableBuilder;
+
     /**
      * Model name
      *
@@ -24,7 +28,7 @@ abstract class Repository
      *
      * @var array
      */
-    protected $excludeUpdate = [];
+    protected $excludeUpdate = ["password", "remember_token"];
 
     /**
      * Get one data by spesific condition

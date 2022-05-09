@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\UsersDataTable;
 use App\Interfaces\UserInterface;
 use App\Traits\RedirectNotification;
 use Illuminate\Http\Request;
@@ -31,7 +32,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.index');
+        $datatable = $this->userInterface->buildDatatableTable();
+        $datatableScript = $this->userInterface->buildDatatableScript();
+        return view('user.index', compact('datatable', 'datatableScript'));
     }
 
     /**
@@ -105,25 +108,8 @@ class UserController extends Controller
         return $this->sendRedirectTo($act, 'Berhasil menghapus data user', 'Gagal menghapus data user');
     }
 
-    public function list()
+    public function list(Request $request)
     {
-        $data = $this->userInterface->getAll();
-
-        return DataTables::of($data)
-            ->addColumn('action', function ($data) {
-                return "<div class='btn-group'>
-                        <a class='btn btn-primary btn-sm' href='" . route('user.show', $data->id) . "'>
-                            <i class='anticon anticon-search'></i>
-                        </a> 
-                        <button class='btn btn-danger btn-sm deleteButton' data-id='$data->id' data-form='#userDeleteButton$data->id'>
-                            <i class='anticon anticon-delete'></i>
-                        </button>
-                        <form id='userDeleteButton$data->id' action='" . route('user.destroy', $data->id) . "' method='POST'>" . csrf_field() . " " . method_field('DELETE') . "
-                        </form>
-                    </div>";
-            })
-            ->rawColumns(['action'])
-            ->addIndexColumn()
-            ->make(true);
+        return ($request->ajax()) ? $this->userInterface->datatable() : null;
     }
 }

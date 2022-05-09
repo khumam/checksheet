@@ -15,7 +15,10 @@ class UserRepository extends Repository implements UserInterface
     {
         $this->model = new User();
         $this->fillable = $this->model->getFillable();
-        $this->excludeUpdate = ['password', 'remember_token'];
+        $this->datatableSourceData = $this->getAll();
+        $this->datatableAction = ["SHOW", "DELETE"];
+        $this->datatableHeader = ["Nama" => "name", "Email" => "email"];
+        $this->datatableRoute = 'admin.user';
     }
 
     public function beAdmin(Request $request)

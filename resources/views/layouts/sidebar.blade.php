@@ -10,7 +10,7 @@
                 </a>
             </li>
             <li class="nav-item dropdown">
-                <a href="{{ route('user.index') }}">
+                <a href="{{ route('admin.user.index') }}">
                     <span class="icon-holder">
                         <i class="anticon anticon-team"></i>
                     </span>
