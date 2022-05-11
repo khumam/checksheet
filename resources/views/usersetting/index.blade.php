@@ -22,7 +22,7 @@
                         <input type="file" name="photo" id="photo" class="form-control" accept="image/*" hidden>
                         <div class="media align-items-center">
                             <div class="avatar avatar-image  m-h-10 m-r-15" style="height: 80px; width: 80px">
-                                <img src="{{ (Auth()->user()->pic != null) ? \Storage::url(Auth()->user()->pic) : 'https://ui-avatars.com/api/?background=random&name=' . Str::slug(Auth()->user()->name) }}" alt="{{ Auth()->user()->name }}" id="openphoto">
+                                <img id="photoarea" src="{{ (Auth()->user()->pic != null) ? \Storage::url(Auth()->user()->pic) : 'https://ui-avatars.com/api/?background=random&name=' . Str::slug(Auth()->user()->name) }}" alt="{{ Auth()->user()->name }}">
                             </div>
                             <div class="m-l-20 m-r-20">
                                 <h5 class="m-b-5 font-size-18">Ubah Foto Profil</h5>
@@ -32,6 +32,7 @@
                                 </p>
                             </div>
                             <div>
+                                <button class="btn btn-tone btn-info" type="button" id="openphoto">Pilih gambar</button>
                                 <button class="btn btn-tone btn-primary">Upload</button>
                                 @error('photo')
                                 <div class="text-danger">
@@ -132,7 +133,7 @@
             var reader = new FileReader();
 
             reader.onload = function(e) {
-                $('#openphoto').attr('src', e.target.result);
+                $('#photoarea').attr('src', e.target.result);
             }
 
             reader.readAsDataURL(input.files[0]);
