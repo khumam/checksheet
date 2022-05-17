@@ -38,6 +38,10 @@ abstract class Repository
      */
     public function get(array $condition)
     {
+        if ($this->validateCondition($condition)) {
+            return $this->model::where($condition[0], $condition[1], $condition[2] ?? '')->latest()->first();
+        }
+
         return $this->model::where($condition)->latest()->first();
     }
 
@@ -49,6 +53,10 @@ abstract class Repository
      */
     public function getAll(array $condition = [])
     {
+        if ($this->validateCondition($condition)) {
+            return $this->model::where($condition[0], $condition[1], $condition[2] ?? '')->get();
+        }
+
         return $this->model::where($condition)->get();
     }
 
@@ -61,6 +69,10 @@ abstract class Repository
      */
     public function paginate($totalPage, array $condition)
     {
+        if ($this->validateCondition($condition)) {
+            return $this->model::where($condition[0], $condition[1], $condition[2] ?? '')->paginate($totalPage);
+        }
+
         return $this->model::where($condition)->paginate($totalPage);
     }
 
@@ -84,6 +96,10 @@ abstract class Repository
      */
     public function update($request, array $condition)
     {
+        if ($this->validateCondition($condition)) {
+            return $this->model::where($condition[0], $condition[1], $condition[2] ?? '')->update($this->build($request, true));
+        }
+
         return $this->model::where($condition)->update($this->build($request, true));
     }
 
@@ -96,6 +112,10 @@ abstract class Repository
      */
     public function put($request, array $condition)
     {
+        if ($this->validateCondition($condition)) {
+            return $this->model::where($condition[0], $condition[1], $condition[2] ?? '')->update($request);
+        }
+
         return $this->model::where($condition)->update($request);
     }
 
@@ -107,7 +127,11 @@ abstract class Repository
      */
     public function destroy(array $condition)
     {
-        return $this->model::where($condition)->destroy();
+        if ($this->validateCondition($condition)) {
+            return $this->model::where($condition[0], $condition[1], $condition[2] ?? '')->delete();
+        }
+
+        return $this->model::where($condition)->delete();
     }
 
     /**
@@ -131,5 +155,16 @@ abstract class Repository
         }
 
         return $attribute;
+    }
+
+    /**
+     * Validate Condition that array has key or not
+     *
+     * @param  mixed $condition
+     * @return void
+     */
+    public function validateCondition(array $condition)
+    {
+        return ($condition[0]) ? true : false;
     }
 }
