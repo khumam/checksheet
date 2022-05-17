@@ -53,6 +53,18 @@ abstract class Repository
     }
 
     /**
+     * Get all data with pagination
+     *
+     * @param  mixed $totalPage
+     * @param  mixed $condition
+     * @return void
+     */
+    public function paginate($totalPage, array $condition)
+    {
+        return $this->model::where($condition)->paginate($totalPage);
+    }
+
+    /**
      * Store data to database
      *
      * @param  mixed $request
@@ -73,6 +85,18 @@ abstract class Repository
     public function update($request, array $condition)
     {
         return $this->model::where($condition)->update($this->build($request, true));
+    }
+
+    /**
+     * Put data to database
+     *
+     * @param  mixed $request
+     * @param  mixed $condition
+     * @return void
+     */
+    public function put($request, array $condition)
+    {
+        return $this->model::where($condition)->update($request);
     }
 
     /**

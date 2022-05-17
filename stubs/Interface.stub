@@ -1,0 +1,8 @@
+<?php
+
+namespace $NAMESPACE$;
+$REQUESTS$
+interface $CLASS_NAME$Interface
+{
+$RESOURCES$$DATATABLES$
+}

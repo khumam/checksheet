@@ -70,9 +70,10 @@ trait DatatableBuilder
      *
      * @return void
      */
-    public function datatable()
+    public function datatable($sourceData = null)
     {
-        $this->datatable = DataTables::of($this->datatableSourceData)
+        $sourceData = ($sourceData != null) ? $sourceData : $this->datatableSourceData;
+        $this->datatable = DataTables::of($sourceData)
             ->addIndexColumn();
 
         if (!empty($this->datatableColumns)) {
@@ -163,9 +164,10 @@ trait DatatableBuilder
      *
      * @return void
      */
-    public function buildDatatableScript()
+    public function buildDatatableScript(string $sourceRoute = null)
     {
-        $script = '<script>$(document).ready(function() {var table = $("#' . $this->datatableId . '").DataTable({paginate:true,info:true,sort:true,rocessing:true,serverside:true,ajax:{headers:{"X-CSRF-TOKEN":"' . csrf_token() . '"},url:"' . route($this->datatableRoute . '.list') . '",method:"POST"},columns:[{data: "DT_RowIndex",orderable: false,searchable: false,class: "text-center",width: "10px"},';
+        $route = ($sourceRoute != null) ? $sourceRoute : route($this->datatableRoute . '.list');
+        $script = '<script>$(document).ready(function() {var table = $("#' . $this->datatableId . '").DataTable({paginate:true,info:true,sort:true,rocessing:true,serverside:true,ajax:{headers:{"X-CSRF-TOKEN":"' . csrf_token() . '"},url:"' . $route . '",method:"POST"},columns:[{data: "DT_RowIndex",orderable: false,searchable: false,class: "text-center",width: "10px"},';
         foreach ($this->datatableHeader as $head => $value) {
                 $script .= '{data: "' . $value . '"},';
         }
