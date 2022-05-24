@@ -222,7 +222,7 @@ class MakeInterfaceCommand extends Command
     {
         $isArgumentResource = in_array('RESOURCE', $this->arguments);
         if ($isArgumentResource) {
-            return "\tpublic function get(array \$condition);\n\tpublic function getAll(array \$condition = []);\n\tpublic function store(Store" . $this->className . "Request \$request);\n\tpublic function update(Update" . $this->className . "Request \$request, array \$condition);\n\tpublic function destroy(array \$condition);\n";
+            return "\tpublic function get(array \$condition);\n\tpublic function getAll(array \$condition = []);\n\tpublic function store(Store" . $this->className . "Request \$request);\n\tpublic function update(Update" . $this->className . "Request \$request, array \$condition);\n\tpublic function put(array \$request, array \$condition);\n\tpublic function destroy(array \$condition);\n";
         }
 
         return null;

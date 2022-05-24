@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Traits\DatatableBuilder;
+use Illuminate\Support\Facades\Storage;
 
 abstract class Repository
 {
@@ -135,6 +136,34 @@ abstract class Repository
     }
 
     /**
+     * uploadFile
+     *
+     * @param  mixed $request
+     * @param  mixed $name
+     * @param  mixed $path
+     * @return void
+     */
+    public function uploadFile($request, string $name, string $path, bool $deleteFirst = false)
+    {
+        if ($deleteFirst) {
+            $this->deleteFile($request->$name);
+        }
+
+        return ($request->hasFile($name)) ? $request->file($name)->store($path) : null;
+    }
+
+    /**
+     * deleteFile
+     *
+     * @param  mixed $path
+     * @return void
+     */
+    public function deleteFile(string $path)
+    {
+        return ($path != '') ? Storage::delete($path) : true;
+    }
+
+    /**
      * Build database column atribute
      *
      * @param  mixed $request
@@ -165,6 +194,6 @@ abstract class Repository
      */
     public function validateCondition(array $condition)
     {
-        return ($condition[0]) ? true : false;
+        return ($condition && isset($condition[0])) ? true : false;
     }
 }
