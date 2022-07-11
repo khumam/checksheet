@@ -89,7 +89,8 @@ class MakeRepositoryCommand extends Command
             return true;
         }
 
-        return false;
+        $this->model = $this->className;
+        return true;
     }
 
     /**

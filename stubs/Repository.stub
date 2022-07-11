@@ -14,5 +14,6 @@ class $CLASS_NAME$Repository extends Repository implements $CLASS_NAME$Interface
     {
         $this->model = new $MODEL$();
         $this->fillable = $this->model->getFillable();
+        $this->datatableSourceData = $this->getAll();
     }
 }
