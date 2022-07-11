@@ -18,28 +18,57 @@ class UserSettingController extends Controller
 
     protected $userSettingInterface;
 
+    /**
+     * __construct
+     *
+     * @param  mixed $userSettingInterface
+     * @return void
+     */
     public function __construct(UserSettingInterface $userSettingInterface)
     {
         $this->userSettingInterface = $userSettingInterface;
     }
 
+    /**
+     * index
+     *
+     * @return void
+     */
     public function index()
     {
         return view('usersetting.index');
     }
 
+    /**
+     * saveUser
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function saveUser(SettingUserRequest $request)
     {
         $act = $this->userSettingInterface->saveUser($request);
         return $this->sendRedirectTo($act, 'Berhasil merubah data user', 'Gagal merubah data user');
     }
 
+    /**
+     * savePassword
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function savePassword(UpdatePasswordRequest $request)
     {
         $act = $this->userSettingInterface->savePassword($request);
         return $this->sendRedirectTo($act, 'Berhasil merubah password user', 'Gagal merubah password user');
     }
 
+    /**
+     * saveProfilePicture
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function saveProfilePicture(UpdateProfilPicRequest $request)
     {
         $this->userSettingInterface->deleteOldImage();

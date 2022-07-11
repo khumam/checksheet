@@ -108,6 +108,12 @@ class UserController extends Controller
         return $this->sendRedirectTo($act, 'Berhasil menghapus data user', 'Gagal menghapus data user');
     }
 
+    /**
+     * list
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function list(Request $request)
     {
         return ($request->ajax()) ? $this->userInterface->datatable() : null;
