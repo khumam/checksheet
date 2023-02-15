@@ -13,7 +13,7 @@ class MakeViewCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'make:view {name} {--type=} {--model=}';
+    protected $signature = 'make:view {name} {--type=} {--model=} {--route=}';
 
     /**
      * The console command description.
@@ -41,6 +41,13 @@ class MakeViewCommand extends Command
      * @var Filesystem
      */
     protected $files;
+
+    /**
+     * route
+     *
+     * @var mixed
+     */
+    protected $route = "";
 
     /**
      * Create a new command instance.
@@ -95,6 +102,10 @@ class MakeViewCommand extends Command
         if ($this->option('model')) {
             $this->model = $this->option('model');
         }
+
+        if ($this->option('route')) {
+            $this->route = $this->option('route');
+        }
     }
 
     /**
@@ -105,11 +116,11 @@ class MakeViewCommand extends Command
     public function getStubPath()
     {
         return [
-            'regular' => __DIR__ . './../../../stubs/IndexRegularView.stub',
-            'index' => __DIR__ . './../../../stubs/IndexView.stub',
-            'create' => __DIR__ . './../../../stubs/CreateView.stub',
-            'edit' => __DIR__ . './../../../stubs/EditView.stub',
-            'show' => __DIR__ . './../../../stubs/ShowView.stub',
+            'regular' => __DIR__ . './../../../stubs/View.stub',
+            'index' => __DIR__ . './../../../stubs/ViewIndex.stub',
+            'create' => __DIR__ . './../../../stubs/ViewCreate.stub',
+            'edit' => __DIR__ . './../../../stubs/ViewEdit.stub',
+            'show' => __DIR__ . './../../../stubs/ViewShow.stub',
         ];
     }
 
@@ -124,6 +135,7 @@ class MakeViewCommand extends Command
     {
         return [
             'VIEWNAME' => Str::ucfirst($this->argument('name')),
+            'ROUTE' => $this->route
         ];
     }
 
