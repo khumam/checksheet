@@ -170,7 +170,7 @@ abstract class Repository
      * @param  mixed $excludeUpdate
      * @return array
      */
-    private function build($request, bool $excludeUpdate = false): array
+    protected function build($request, bool $excludeUpdate = false): array
     {
         $attribute = [];
         foreach ($this->fillable as $fillable) {
