@@ -23,6 +23,7 @@ class CreateCoursesTable extends Migration
             $table->unsignedInteger('total_durations')->default(0);
             $table->timestamps();
             $table->softDeletes();
+            $table->index(['id', 'name']);
         });
     }
 
