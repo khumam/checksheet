@@ -40,8 +40,5 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('admin')->as('admin.')->group(function () {
         Route::resource('user', UserController::class)->only(['index', 'show', 'destroy', 'edit']);
         Route::post('user/list', [UserController::class, 'list'])->name('user.list');
-
-        Route::resource('course', CourseController::class);
-        Route::post('course/list', [CourseController::class, 'list'])->name('course.list');
     });
 });
