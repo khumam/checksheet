@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ItemController;
@@ -39,5 +40,8 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('admin')->as('admin.')->group(function () {
         Route::resource('user', UserController::class)->only(['index', 'show', 'destroy', 'edit']);
         Route::post('user/list', [UserController::class, 'list'])->name('user.list');
+
+        Route::resource('equipment', EquipmentController::class);
+        Route::post('equipment/list', [EquipmentController::class, 'list'])->name('equipment.list');
     });
 });
