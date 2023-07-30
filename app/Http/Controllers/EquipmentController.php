@@ -48,10 +48,10 @@ class EquipmentController extends Controller
      * @param  \App\Http\Requests\StoreEquipmentRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreEquipmentRequest $request): void
+    public function store(StoreEquipmentRequest $request)
     {
         $act = $this->equipmentInterface->store($request);
-        $this->sendRedirectTo($act, 'Berhasil menambahkan equipment baru', 'Gagal menambahkan equipment baru', route('admin.equipment.index'));
+        return $this->sendRedirectTo($act, 'Berhasil menambahkan equipment baru', 'Gagal menambahkan equipment baru', route('admin.equipment.index'));
     }
 
     /**
@@ -85,10 +85,10 @@ class EquipmentController extends Controller
      * @param  \App\Models\Equipment  $equipment
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateEquipmentRequest $request, Equipment $equipment): void
+    public function update(UpdateEquipmentRequest $request, Equipment $equipment)
     {
         $act = $this->equipmentInterface->update($request, ['id' => $equipment->id]);
-        $this->sendRedirectTo($act, 'Berhasil menyunting equipment baru', 'Gagal menyunting equipment baru', route('admin.equipment.index'));
+        return $this->sendRedirectTo($act, 'Berhasil menyunting equipment baru', 'Gagal menyunting equipment baru', route('admin.equipment.index'));
     }
 
     /**
@@ -97,10 +97,10 @@ class EquipmentController extends Controller
      * @param  \App\Models\Equipment  $equipment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Equipment $equipment): void
+    public function destroy(Equipment $equipment)
     {
         $act = $this->equipmentInterface->destroy(['id' => $equipment->id]);
-        $this->sendRedirectTo($act, 'Berhasil menghapus equipment baru', 'Gagal menghapus equipment baru', route('admin.equipment.index'));
+        return $this->sendRedirectTo($act, 'Berhasil menghapus equipment baru', 'Gagal menghapus equipment baru', route('admin.equipment.index'));
     }
 
     /**
