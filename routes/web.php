@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChecksheetController;
 use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\HomeController;
@@ -43,5 +44,10 @@ Route::middleware(['auth'])->group(function () {
 
         Route::resource('equipment', EquipmentController::class);
         Route::post('equipment/list', [EquipmentController::class, 'list'])->name('equipment.list');
+
+        Route::resource('checksheet', ChecksheetController::class);
+        Route::post('checksheet/list', [ChecksheetController::class, 'list'])->name('checksheet.list');
+        Route::post('checksheet/updatetimerow', [ChecksheetController::class, 'updateTimeRow'])->name('checksheet.updatetimerow');
+        Route::post('checksheet/updateketerangan', [ChecksheetController::class, 'updateKeterangan'])->name('checksheet.updateketerangan');
     });
 });

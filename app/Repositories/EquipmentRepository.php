@@ -111,4 +111,19 @@ class EquipmentRepository extends Repository implements EquipmentInterface
             dd($exception->getMessage());
         }
     }
+
+    /**
+     * Get all data by spesific condition
+     *
+     * @param  mixed $condition
+     * @return object
+     */
+    public function getAll(array $condition = [])
+    {
+        if ($this->validateCondition($condition)) {
+            return $this->model::where($condition[0], $condition[1], $condition[2] ?? '')->with('descriptions')->get();
+        }
+
+        return $this->model::where($condition)->with('descriptions')->get();
+    }
 }
