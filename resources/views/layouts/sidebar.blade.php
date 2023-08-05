@@ -12,7 +12,7 @@
             <li class="nav-item dropdown">
                 <a href="{{ route('admin.checksheet.index') }}">
                     <span class="icon-holder">
-                        <i class="anticon anticon-team"></i>
+                        <i class="anticon anticon-snippets"></i>
                     </span>
                     <span class="title">Kelola Laporan</span>
                 </a>
@@ -20,7 +20,7 @@
             <li class="nav-item dropdown">
                 <a href="{{ route('admin.grading.index') }}">
                     <span class="icon-holder">
-                        <i class="anticon anticon-team"></i>
+                        <i class="anticon anticon-copy"></i>
                     </span>
                     <span class="title">Kelola Grading</span>
                 </a>
@@ -28,7 +28,7 @@
             <li class="nav-item dropdown">
                 <a href="{{ route('admin.equipment.index') }}">
                     <span class="icon-holder">
-                        <i class="anticon anticon-team"></i>
+                        <i class="anticon anticon-heat-map"></i>
                     </span>
                     <span class="title">Kelola Equipment</span>
                 </a>
