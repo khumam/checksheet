@@ -4,10 +4,12 @@ namespace App\Providers;
 
 use App\Interfaces\CheckSheetInterface;
 use App\Interfaces\EquipmentInterface;
+use App\Interfaces\GradingInterface;
 use App\Interfaces\UserInterface;
 use App\Interfaces\UserSettingInterface;
 use App\Repositories\CheckSheetRepository;
 use App\Repositories\EquipmentRepository;
+use App\Repositories\GradingRepository;
 use App\Repositories\UserRepository;
 use App\Repositories\UserSettingRepository;
 use Illuminate\Support\ServiceProvider;
@@ -25,6 +27,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(UserSettingInterface::class, UserSettingRepository::class);
         $this->app->bind(EquipmentInterface::class, EquipmentRepository::class);
         $this->app->bind(CheckSheetInterface::class, CheckSheetRepository::class);
+        $this->app->bind(GradingInterface::class, GradingRepository::class);
     }
 
     /**

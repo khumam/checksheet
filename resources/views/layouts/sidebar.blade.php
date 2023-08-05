@@ -18,6 +18,14 @@
                 </a>
             </li>
             <li class="nav-item dropdown">
+                <a href="{{ route('admin.grading.index') }}">
+                    <span class="icon-holder">
+                        <i class="anticon anticon-team"></i>
+                    </span>
+                    <span class="title">Kelola Grading</span>
+                </a>
+            </li>
+            <li class="nav-item dropdown">
                 <a href="{{ route('admin.equipment.index') }}">
                     <span class="icon-holder">
                         <i class="anticon anticon-team"></i>
