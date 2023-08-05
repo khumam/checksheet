@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Interfaces\CheckSheetInterface;
 use App\Models\CheckSheet;
+use App\Models\CheckSheetPhoto;
 use App\Traits\RedirectNotification;
 
 class CheckSheetRepository extends Repository implements CheckSheetInterface
@@ -47,6 +48,15 @@ class CheckSheetRepository extends Repository implements CheckSheetInterface
         );
     }
 
+    /**
+     * updateKeterangan
+     *
+     * @param  mixed $checkSheetId
+     * @param  mixed $equipmentId
+     * @param  mixed $descId
+     * @param  mixed $value
+     * @return void
+     */
     public function updateKeterangan($checkSheetId, $equipmentId, $descId, $value)
     {
         $checksheet = $this->model::where('id', $checkSheetId)->first();
@@ -64,5 +74,51 @@ class CheckSheetRepository extends Repository implements CheckSheetInterface
                 'descs' => $newDesc
             ]
         );
+    }
+
+    /**
+     * uploadFile
+     *
+     * @param  mixed $request
+     * @param  mixed $name
+     * @param  mixed $path
+     * @return void
+     */
+    public function upload($request, $id)
+    {
+        try {
+            $path = $this->uploadFile($request, 'photo', 'public/photo', false);
+            return CheckSheetPhoto::create([
+                'checksheet_id' => $id,
+                'time' => $request->time,
+                'photo' => $path
+            ]);
+        } catch (\Exception $err) {
+            dd($err);
+        }
+    }
+
+    /**
+     * getListPhoto
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function getListPhoto($request, $id)
+    {
+        return CheckSheetPhoto::where('checksheet_id', $id)->with('checksheet')->latest()->get();
+    }
+
+    public function deletePhoto($request, $id)
+    {
+        try {
+            $data = CheckSheetPhoto::where('id', $id);
+            $src = $data->first();
+            $this->deleteFile($src->photo);
+            $data->delete();
+            return $src;
+        } catch (\Exception $err) {
+            dd($err);
+        }
     }
 }

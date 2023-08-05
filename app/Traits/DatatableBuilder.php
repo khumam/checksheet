@@ -113,7 +113,7 @@ trait DatatableBuilder
 
                 if ($action == "DELETE") {
                     $actions .= "<button class='btn btn-danger btn-sm deleteButton'
-                    data-id='$data->id' 
+                    data-id='$data->id'
                     data-form='#userDeleteButton$data->id'>
                     <i class='anticon anticon-delete'></i></button>
                     <form id='userDeleteButton$data->id' action='"
@@ -167,7 +167,7 @@ trait DatatableBuilder
     public function buildDatatableScript(string $sourceRoute = null)
     {
         $route = ($sourceRoute != null) ? $sourceRoute : route($this->datatableRoute . '.list');
-        $script = '<script>$(document).ready(function() {var table = $("#' . $this->datatableId . '").DataTable({paginate:true,info:true,sort:true,rocessing:true,serverside:true,ajax:{headers:{"X-CSRF-TOKEN":"' . csrf_token() . '"},url:"' . $route . '",method:"POST"},columns:[{data: "DT_RowIndex",orderable: false,searchable: false,class: "text-center",width: "10px"},';
+        $script = '<script>$(document).ready(function() {var table = $("#' . $this->datatableId . '").DataTable({paginate:true,info:true,sort:true,processing:true,serverside:true,ajax:{headers:{"X-CSRF-TOKEN":"' . csrf_token() . '"},url:"' . $route . '",method:"POST"},columns:[{data: "DT_RowIndex",orderable: false,searchable: false,class: "text-center",width: "10px"},';
         foreach ($this->datatableHeader as $head => $value) {
                 $script .= '{data: "' . $value . '"},';
         }

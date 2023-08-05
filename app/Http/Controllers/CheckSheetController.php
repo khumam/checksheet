@@ -13,6 +13,8 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
+use DataTables;
+use Illuminate\Support\Facades\Storage;
 
 class ChecksheetController extends Controller
 {
@@ -188,6 +190,12 @@ class ChecksheetController extends Controller
         return response(401);
     }
 
+    /**
+     * updateKeterangan
+     *
+     * @param  mixed $request
+     * @return Response
+     */
     public function updateKeterangan(Request $request): Response
     {
         if ($request->ajax()) {
@@ -201,5 +209,73 @@ class ChecksheetController extends Controller
         }
 
         return response(401);
+    }
+
+    /**
+     * uploadPage
+     *
+     * @param  mixed $id
+     * @return View
+     */
+    public function uploadPage(string $id): View
+    {
+        $checksheet = $this->checkSheetInterface->get(['id' => $id]);
+        return view('checksheet.upload', compact('checksheet'));
+    }
+
+    /**
+     * upload
+     *
+     * @param  mixed $request
+     * @param  mixed $id
+     * @return void
+     */
+    public function upload(Request $request, $id)
+    {
+        $act = $this->checkSheetInterface->upload($request, $id);
+        return $this->sendRedirectTo($act, 'Berhasil mengunggah foto laporan check sheet', 'Gagal mengunggah foto laporan check sheet', route('admin.checksheet.uploadpage', $id));
+    }
+
+    /**
+     * listPhoto
+     *
+     * @param  mixed $request
+     * @param  mixed $id
+     * @return void
+     */
+    public function listPhoto(Request $request, $id)
+    {
+        $data = $this->checkSheetInterface->getListPhoto($request, $id);
+        return DataTables::of($data)
+            ->addColumn('photo', function ($data) {
+                $path = Storage::url($data->photo);
+                return "<a href='$path' target='_blank'><img src='$path' alt='$data->time' class='img-fluid' /></a>";
+            })
+            ->addColumn('action', function ($data) {
+                $actions = "<button class='btn btn-danger btn-sm deleteButton'
+                    data-id='$data->id'
+                    data-form='#photoDeleteButton$data->id'>
+                    <i class='anticon anticon-delete'></i></button>
+                    <form id='photoDeleteButton$data->id' action='"
+                    . route("admin.checksheet.destroy.photo", $data->id) . "' method='POST'>"
+                    . csrf_field() . " " . method_field('DELETE') . "</form>";
+                return $actions;
+            })
+            ->addIndexColumn()
+            ->rawColumns(['photo', 'action'])
+            ->make(true);
+    }
+
+    /**
+     * destroyPhoto
+     *
+     * @param  mixed $request
+     * @param  mixed $id
+     * @return void
+     */
+    public function destroyPhoto(Request $request, $id)
+    {
+        $act = $this->checkSheetInterface->deletePhoto($request, $id);
+        return $this->sendRedirectTo($act, 'Berhasil menghapus foto laporan check sheet', 'Gagal menghapus foto laporan check sheet', route('admin.checksheet.uploadpage', $act->checksheet_id));
     }
 }

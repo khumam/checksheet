@@ -49,5 +49,9 @@ Route::middleware(['auth'])->group(function () {
         Route::post('checksheet/list', [ChecksheetController::class, 'list'])->name('checksheet.list');
         Route::post('checksheet/updatetimerow', [ChecksheetController::class, 'updateTimeRow'])->name('checksheet.updatetimerow');
         Route::post('checksheet/updateketerangan', [ChecksheetController::class, 'updateKeterangan'])->name('checksheet.updateketerangan');
+        Route::get('checksheet/{id}/upload', [ChecksheetController::class, 'uploadPage'])->name('checksheet.uploadpage');
+        Route::post('checksheet/{id}/upload', [ChecksheetController::class, 'upload'])->name('checksheet.upload');
+        Route::post('checksheet/{id}/list', [ChecksheetController::class, 'listPhoto'])->name('checksheet.photo.list');
+        Route::delete('checksheet/{id}/photo/destroy', [ChecksheetController::class, 'destroyPhoto'])->name('checksheet.destroy.photo');
     });
 });

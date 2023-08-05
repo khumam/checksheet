@@ -4,6 +4,7 @@ namespace App\Interfaces;
 
 use App\Http\Requests\StoreCheckSheetRequest;
 use App\Http\Requests\UpdateCheckSheetRequest;
+use Illuminate\Http\Request;
 
 interface CheckSheetInterface
 {
@@ -19,4 +20,7 @@ interface CheckSheetInterface
 
     public function updateTimeRow($checkSheetId, $equipmentId, $descId, $time, $value);
     public function updateKeterangan($checkSheetId, $equipmentId, $descId, $value);
+    public function upload(Request $request, $id);
+    public function getListPhoto(Request $request, $id);
+    public function deletePhoto(Request $request, $id);
 }

@@ -25,6 +25,7 @@
 						<td>{{ $checksheet->checked_by }}</td>
 					</tr>
 				</table>
+				<a href="{{ route('admin.checksheet.uploadpage', $checksheet->id) }}" class="btn btn-primary">Detail Bukti</a>
 			</div>
 		</div>
 	</div>
