@@ -5,5 +5,8 @@
     <div class="col-md-6">
         <livewire:grading-chart-livewire></livewire:grading-chart-livewire>
     </div>
+    <div class="col-md-6">
+        <livewire:grading-table-livewire></livewire:grading-table-livewire>
+    </div>
 </div>
 @endsection

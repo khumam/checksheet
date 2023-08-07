@@ -44,6 +44,7 @@
 		<script src="{{ url('assets/js/function.js') }}"></script>
 		<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.3/chart.umd.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
 
 		@if(Session::get('success') || Session::get('error'))
 		<script>

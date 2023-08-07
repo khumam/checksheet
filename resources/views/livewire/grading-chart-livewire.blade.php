@@ -8,11 +8,12 @@
 
 	@push('js')
 	<script>
+		Chart.register(ChartDataLabels);
 		const ctx = document.getElementById('gradingchart');
 		const data = {
 			labels: @js($types),
 			datasets: [{
-				label: 'Nilai',
+				label: 'Average (%)',
 				data: @js($data),
 				backgroundColor: @js($colors),
 				hoverOffset: 4
@@ -25,6 +26,14 @@
 				plugins: {
 					legend: {
 						position: 'right'
+					},
+					datalabels: {
+							anchor: 'middle',
+							align: 'middle',
+							font: {
+									weight: 'normal',
+									size: 12
+							}
 					}
 				}
 			}
