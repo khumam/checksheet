@@ -61,9 +61,13 @@
 								<td>{{ $descItem->satuan }}</td>
 								<td>{{ $descItem->standard }}</td>
 								@php $total = 0 @endphp
+								@php $totalPeriodData = 0 @endphp
 								@foreach(json_decode($checksheet->reports,
 								true)[$descItem->equipment_id][$descItem->id] as $key => $value)
 								@php $total += array_values($value)[0] @endphp
+								@if(array_values($value)[0] != null)
+								@php $totalPeriodData += 1 @endphp
+								@endif
 								<td>
 									<input
 										type="number"
@@ -80,7 +84,7 @@
 									/>
 								</td>
 								@endforeach
-								<td>{{ number_format($total / count($periodData), 3) }}</td>
+								<td>{{ ($totalPeriodData > 0) ? number_format($total / $totalPeriodData, 2) : 0 }}</td>
 								<td>
 									<input
 										type="text"
