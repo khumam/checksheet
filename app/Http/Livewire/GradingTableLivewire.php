@@ -14,9 +14,11 @@ class GradingTableLivewire extends Component
     public function mount()
     {
         $gradingData = Grading::latest()->first();
-        $dataType = json_decode($gradingData->data, true);
-        foreach ($this->typesId as $type) {
-            $this->data[$type] = $dataType[$type];
+        if ($gradingData) {
+            $dataType = json_decode($gradingData->data, true);
+            foreach ($this->typesId as $type) {
+                $this->data[$type] = $dataType[$type];
+            }
         }
     }
 

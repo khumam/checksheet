@@ -3,9 +3,14 @@
 		<h4 class="card-title">Grading Chart</h4>
 	</div>
 	<div class="card-body">
+		@if(count($data) > 0)
     <canvas id="gradingchart" style="display:block;margin:0 auto;"></canvas>
+		@else
+		<h5 class="text-center">Tidak ada data</h5>
+		@endif
 	</div>
 
+	@if(count($data))
 	@push('js')
 	<script>
 		Chart.register(ChartDataLabels);
@@ -41,4 +46,5 @@
 		const chart = new Chart(ctx, config)
 	</script>
 	@endpush
+	@endif
 </div>

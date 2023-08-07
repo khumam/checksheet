@@ -9,12 +9,16 @@
 				<th>Average</th>
 			</thead>
 			<tbody>
-				@foreach($data as $type => $value)
+				@forelse($data as $type => $value)
 				<tr>
 					<td>{{ \Str::ucfirst(\Str::replace('_', '', $type)) }}</td>
 					<td>{{ $value }}%</td>
 				</tr>
-				@endforeach
+				@empty
+				<tr>
+					<td class="text-center" colspan="2">Tidak ada data</td>
+				</tr>
+				@endforelse
 			</tbody>
 		</table>
 	</div>
