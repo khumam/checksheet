@@ -18,6 +18,14 @@
                 </a>
             </li>
             <li class="nav-item dropdown">
+                <a href="{{ route('admin.loss.index') }}">
+                    <span class="icon-holder">
+                        <i class="anticon anticon-snippets"></i>
+                    </span>
+                    <span class="title">Kelola Losses</span>
+                </a>
+            </li>
+            <li class="nav-item dropdown">
                 <a href="{{ route('admin.grading.index') }}">
                     <span class="icon-holder">
                         <i class="anticon anticon-copy"></i>

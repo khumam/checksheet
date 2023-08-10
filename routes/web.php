@@ -3,6 +3,7 @@
 use App\Http\Controllers\ChecksheetController;
 use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\GradingController;
+use App\Http\Controllers\LossController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ItemController;
@@ -58,5 +59,9 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('grading', GradingController::class)->except('index');
         Route::get('grading/{year?}/{month?}', [GradingController::class, 'index'])->name('grading.index');
         Route::post('grading/list', [GradingController::class, 'list'])->name('grading.list');
+
+        Route::resource('loss', LossController::class);
+        Route::post('loss/list', [LossController::class, 'list'])->name('loss.list');
+        Route::post('loss/updaterow', [LossController::class, 'updateRow'])->name('loss.updaterow');
     });
 });
