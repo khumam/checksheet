@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" style="height: 100%;">
 	<div class="card-header">
 		<h4 class="card-title">Grading Chart</h4>
 	</div>
