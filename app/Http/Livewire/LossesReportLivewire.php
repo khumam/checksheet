@@ -28,13 +28,15 @@ class LossesReportLivewire extends Component
 
     public function process()
     {
-        $categories = ['Oil Losses on FFB'];
-        $reports = json_decode($this->data->data, true);
-        foreach ($reports as $report => $items) {
-            if (in_array($report, $categories)) {
-                foreach ($items as $item => $value) {
-                    if (in_array($item, $this->items)) {
-                        $this->reports[$item] = $value['hasil'];
+        if ($this->data) {
+            $categories = ['Oil Losses on FFB'];
+            $reports = json_decode($this->data->data, true);
+            foreach ($reports as $report => $items) {
+                if (in_array($report, $categories)) {
+                    foreach ($items as $item => $value) {
+                        if (in_array($item, $this->items)) {
+                            $this->reports[$item] = $value['hasil'];
+                        }
                     }
                 }
             }
