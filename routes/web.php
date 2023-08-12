@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ChecksheetController;
+use App\Http\Controllers\CheckSheetController;
 use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\GradingController;
 use App\Http\Controllers\LossController;
@@ -47,14 +47,14 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('equipment', EquipmentController::class);
         Route::post('equipment/list', [EquipmentController::class, 'list'])->name('equipment.list');
 
-        Route::resource('checksheet', ChecksheetController::class);
-        Route::post('checksheet/list', [ChecksheetController::class, 'list'])->name('checksheet.list');
-        Route::post('checksheet/updatetimerow', [ChecksheetController::class, 'updateTimeRow'])->name('checksheet.updatetimerow');
-        Route::post('checksheet/updateketerangan', [ChecksheetController::class, 'updateKeterangan'])->name('checksheet.updateketerangan');
-        Route::get('checksheet/{id}/upload', [ChecksheetController::class, 'uploadPage'])->name('checksheet.uploadpage');
-        Route::post('checksheet/{id}/upload', [ChecksheetController::class, 'upload'])->name('checksheet.upload');
-        Route::post('checksheet/{id}/list', [ChecksheetController::class, 'listPhoto'])->name('checksheet.photo.list');
-        Route::delete('checksheet/{id}/photo/destroy', [ChecksheetController::class, 'destroyPhoto'])->name('checksheet.destroy.photo');
+        Route::resource('checksheet', CheckSheetController::class);
+        Route::post('checksheet/list', [CheckSheetController::class, 'list'])->name('checksheet.list');
+        Route::post('checksheet/updatetimerow', [CheckSheetController::class, 'updateTimeRow'])->name('checksheet.updatetimerow');
+        Route::post('checksheet/updateketerangan', [CheckSheetController::class, 'updateKeterangan'])->name('checksheet.updateketerangan');
+        Route::get('checksheet/{id}/upload', [CheckSheetController::class, 'uploadPage'])->name('checksheet.uploadpage');
+        Route::post('checksheet/{id}/upload', [CheckSheetController::class, 'upload'])->name('checksheet.upload');
+        Route::post('checksheet/{id}/list', [CheckSheetController::class, 'listPhoto'])->name('checksheet.photo.list');
+        Route::delete('checksheet/{id}/photo/destroy', [CheckSheetController::class, 'destroyPhoto'])->name('checksheet.destroy.photo');
 
         Route::resource('grading', GradingController::class)->except('index');
         Route::get('grading/{year?}/{month?}', [GradingController::class, 'index'])->name('grading.index');
