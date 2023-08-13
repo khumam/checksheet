@@ -65,8 +65,8 @@
 	</div>
 </div>
 @endsection @push('js')
-<script src="https://checksheet.test/assets/vendors/datatables/jquery.dataTables.min.js"></script>
-<script src="https://checksheet.test/assets/vendors/datatables/dataTables.bootstrap.min.js"></script>
+<script src="{{ url('assets/vendors/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ url('assets/vendors/datatables/dataTables.bootstrap.min.js') }}"></script>
 <script>
 	$(document).ready(function() {
 		var table = $("#datatable").DataTable({
