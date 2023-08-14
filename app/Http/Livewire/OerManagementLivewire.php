@@ -11,7 +11,7 @@ class OerManagementLivewire extends Component
     public $subCategory = 'OER';
     public $data = null;
     public $report = null;
-    public $value = null;
+    public $value = 0;
     public $formHide = true;
 
     public function mount()
