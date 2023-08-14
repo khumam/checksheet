@@ -11,5 +11,8 @@
     <div class="col-md-6 mb-3">
         <livewire:losses-report-livewire></livewire:losses-report-livewire>
     </div>
+    <div class="col-md-6 mb-3">
+        <livewire:oer-management-livewire></livewire:oer-management-livewire>
+    </div>
 </div>
 @endsection
