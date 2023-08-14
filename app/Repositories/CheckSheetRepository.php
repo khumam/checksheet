@@ -117,7 +117,8 @@ class CheckSheetRepository extends Repository implements CheckSheetInterface
         try {
             $data = CheckSheetPhoto::where('id', $id);
             $src = $data->first();
-            $this->deleteFile($src->photo);
+            // $this->deleteFile($src->photo);
+            unlink('/home/ereports/public_html/media' . $src->photo);
             $data->delete();
             return $src;
         } catch (\Exception $err) {
