@@ -28,7 +28,7 @@ use Symfony\Component\HttpFoundation\ServerBag;
 
 Route::get('/', [HomeController::class, 'welcome']);
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
