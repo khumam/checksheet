@@ -87,7 +87,10 @@ class CheckSheetRepository extends Repository implements CheckSheetInterface
     public function upload($request, $id)
     {
         try {
-            $path = $this->uploadFile($request, 'photo', 'public/photo', false);
+            // $path = $this->uploadFile($request, 'photo', 'public/photo', false);
+            $myimage = $request->photo->getClientOriginalName();
+            $path = md5($myimage) . '.' . $request->photo->getClientOriginalExtension();
+            $request->image->move(public_path('media'), $path);
             return CheckSheetPhoto::create([
                 'checksheet_id' => $id,
                 'time' => $request->time,
