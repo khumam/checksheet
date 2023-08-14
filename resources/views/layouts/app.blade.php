@@ -18,31 +18,46 @@
 	</head>
 
 	<body>
-		<div class="app">
-			<div
-				class="container-fluid p-h-0 p-v-20 bg full-height d-flex"
-				style="background-image: url('assets/images/others/login-3.png')"
-			>
-				<div class="d-flex flex-column justify-content-between w-100">
-					<div class="container d-flex h-100">@yield('content')</div>
-					<div class="d-none d-md-flex p-h-40 justify-content-between">
-						<span class="">Copyright © {{ date("y") }} E-Report</span>
-						<ul class="list-inline">
-							<li class="list-inline-item">
-								<a class="text-dark text-link" href="">Legal</a>
-							</li>
-							<li class="list-inline-item">
-								<a class="text-dark text-link" href="">Privacy</a>
-							</li>
-						</ul>
-					</div>
+		<div class="app my-5">
+			<div class="layout">
+				<div class="container">
+					<div class="main-content">@yield('content')</div>
+
+					<footer class="footer">
+						<div class="footer-content">
+							<p class="m-b-0">
+								Copyright © {{ date("y") }} E-Report. All rights reserved.
+							</p>
+							<span>
+								<a href="" class="text-gray m-r-15">Term &amp; Conditions</a>
+								<a href="" class="text-gray">Privacy &amp; Policy</a>
+							</span>
+						</div>
+					</footer>
 				</div>
 			</div>
 		</div>
 
 		<script src="{{ url('assets/js/vendors.min.js') }}"></script>
 		<script src="{{ url('assets/js/app.min.js') }}"></script>
+		<script src="{{ url('assets/js/function.js') }}"></script>
+		<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.3/chart.umd.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
 
-		@stack('js') @livewireScripts
+		@if(Session::get('success') || Session::get('error'))
+		<script>
+			$(document).ready(function() {
+			    @if(Session::get('success'))
+			    var icon = 'success';
+			    @endif
+			    @if(Session::get('error'))
+			    var icon = 'error';
+			    @endif
+
+			    sweatAlert(icon, "{{ Session::get('success') ?? Session::get('error') }}", "{{ Auth()->user()->name }}");
+			});
+		</script>
+		@endif @stack('js') @livewireScripts
 	</body>
 </html>

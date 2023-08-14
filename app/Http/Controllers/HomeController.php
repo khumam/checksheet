@@ -9,7 +9,7 @@ class HomeController extends Controller
 
     public function welcome()
     {
-        return view('auth.login');
+        return view('welcome');
     }
 
     public function index()
