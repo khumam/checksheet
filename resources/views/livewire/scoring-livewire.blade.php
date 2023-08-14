@@ -15,7 +15,7 @@
 						@foreach($scorings as $category => $value)
 						<tr>
 							<td>{{ $category }}</td>
-							<td>{{ $value }}</td>
+							<td>{{ $value['total'] > 0 ? $value['value'] / $value['total'] : 0}}</td>
 						</tr>
 						@endforeach
 					</tbody>
