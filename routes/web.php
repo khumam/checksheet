@@ -65,3 +65,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('loss/updaterow', [LossController::class, 'updateRow'])->name('loss.updaterow');
     });
 });
+
+Route::get('/storage-link', function () {
+    Artisan::call('storage:link');
+});
