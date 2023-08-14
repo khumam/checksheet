@@ -66,7 +66,7 @@ return [
     */
 
     'links' => [
-        public_path('storage') => '../storage/app/public',
+        '/home/ereports/public_html/storage' => '../storage/app/public',
     ],
 
 ];
