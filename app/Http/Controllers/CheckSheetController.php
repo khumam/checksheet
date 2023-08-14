@@ -248,7 +248,7 @@ class ChecksheetController extends Controller
         $data = $this->checkSheetInterface->getListPhoto($request, $id);
         return DataTables::of($data)
             ->addColumn('photo', function ($data) {
-                $path = url('storage/photo/' . str_replace('public/photo/', '', $data->photo));
+                $path = url('media', $data->photo);
                 return "<a href='$path' target='_blank'><img src='$path' alt='$data->time' class='img-fluid' /></a>";
             })
             ->addColumn('action', function ($data) {
